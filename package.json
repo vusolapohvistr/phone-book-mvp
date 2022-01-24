@@ -1,0 +1,25 @@
+{
+  "name": "phone-book-mvp",
+  "version": "1.0.0",
+  "description": "Phone book application MVP",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo 0"
+  },
+  "keywords": [
+    "phone",
+    "book",
+    "phone-book",
+    "phonebook",
+    "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+  ],
+  "author": "Serhii Pylypchuk",
+  "license": "ISC",
+  "dependencies": {
+    "ajv": "^8.9.0",
+    "express": "^4.17.2",
+    "mongoose": "^6.1.7"
+  }
+}
