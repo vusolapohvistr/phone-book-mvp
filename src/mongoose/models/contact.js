@@ -1,5 +1,4 @@
-import { Model } from 'mongoose';
-import { contactSchema } from '../schemas/contact';
+import mongoose from 'mongoose';
+import { contactSchema } from '../schemas/contact.js';
 
-/** @type {Model} */
-export const ContactModel = new Model('Contacts', contactSchema);
+export const ContactModel = mongoose.model('Contacts', contactSchema);

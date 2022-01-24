@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import * as contactsController from './controllers/contacts';
+import * as contactsController from './controllers/contacts.js';
 
 export const router = Router()
   .get('contacts', contactsController.get)

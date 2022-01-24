@@ -1,6 +1,6 @@
-import { Error } from 'mongoose';
+import mongoose from 'mongoose';
 
-import { ContactModel } from '../mongoose/models/contact';
+import { ContactModel } from '../mongoose/models/contact.js';
 
 /**
  * @param {import('express').Request} req 
@@ -61,7 +61,7 @@ export async function create(req, res) {
 
     await contact.save();
   } catch (e) {
-    if (e instanceof Error.ValidationError) {
+    if (e instanceof mongoose.Error.ValidationError) {
       res.status(400);
       res.json(e.errors);
     } else {
@@ -93,7 +93,7 @@ export async function update(req, res) {
       res.json({ message: 'Not found' });
     }
   } catch (e) {
-    if (e instanceof Error.ValidationError) {
+    if (e instanceof mongoose.Error.ValidationError) {
       res.status(400);
       res.json(e.errors);
     } else {

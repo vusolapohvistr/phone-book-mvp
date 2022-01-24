@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { app } from './src/app';
+import { app } from './src/app.js';
 
 const uri = process.env.MONGODB_URI;
 const port = process.env.PORT ?? 3000;
