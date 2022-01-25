@@ -26,7 +26,40 @@ export async function get(req, res) {
  * @param {import('express').Request} req 
  * @param {import('express').Response} res 
  */
-export async function getDuplicates(req, res) {}
+export async function getDuplicates(_req, res) {
+  try {
+    const result = await ContactModel.aggregate([
+      { 
+        $group: {
+          _id: "$phoneNumber",
+          contacts: { $push: "$$ROOT" },
+          count: { $sum: 1 },
+        },
+      },
+      {
+        $match: {
+          count: { $gt: 1 },
+        },
+      },
+      {
+        $project: {
+          phoneNumber: "$_id",
+          contacts: "$contacts",
+          _id: 0,
+        }
+      },
+    ]);
+
+    res.status(200);
+    res.json(result);
+  } catch (e) {
+    console.error(e);
+    res.status(500);
+    res.json({ 
+      message: 'Internal server error',
+    });
+  }
+}
 
 /**
  * @param {import('express').Request} req 
@@ -60,6 +93,8 @@ export async function create(req, res) {
     const contact = new ContactModel(contactObject);
 
     await contact.save();
+    res.status(201);
+    res.json(contact);
   } catch (e) {
     if (e instanceof mongoose.Error.ValidationError) {
       res.status(400);
